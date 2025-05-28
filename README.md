@@ -1,6 +1,6 @@
-# capacitor-widgetsbridge-plugin
+# capacitor-widgetsbridge-plugin-extented
 
-Capacitor plugin to interact with ios widgetkit (Fork of [capacitor-widgetsbridge-plugin]([capacitor-widgetsbridge-plugin](https://github.com/0xn33t/capacitor-widgetsbridge-plugin)))
+Capacitor plugin to interact with ios widgetkit (Fork of [capacitor-widgetsbridge-plugin](https://github.com/0xn33t/capacitor-widgetsbridge-plugin))
 
 ## Demo
 
@@ -17,7 +17,7 @@ npx cap sync
 
 <docgen-index>
 
-- [capacitor-widgetsbridge-plugin](#capacitor-widgetsbridge-plugin)
+- [capacitor-widgetsbridge-plugin-extented](#capacitor-widgetsbridge-plugin-extented)
   - [Demo](#demo)
   - [Install](#install)
   - [API](#api)
