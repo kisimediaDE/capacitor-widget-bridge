@@ -1,6 +1,6 @@
 {
   "name": "capacitor-widgetsbridge-plugin-extented",
-  "version": "0.2.2",
+  "version": "0.2.3",
   "description": "Capacitor plugin to interact with ios widgetkit",
   "main": "dist/plugin.cjs.js",
   "module": "dist/esm/index.js",
