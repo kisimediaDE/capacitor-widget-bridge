@@ -17,20 +17,13 @@ npx cap sync
 
 <docgen-index>
 
-- [capacitor-widgetsbridge-plugin-extented](#capacitor-widgetsbridge-plugin-extented)
-  - [Demo](#demo)
-  - [Install](#install)
-  - [API](#api)
-    - [getItem(...)](#getitem)
-    - [setItem(...)](#setitem)
-    - [removeItem(...)](#removeitem)
-    - [reloadAllTimelines()](#reloadalltimelines)
-    - [reloadTimelines(...)](#reloadtimelines)
-    - [getCurrentConfigurations()](#getcurrentconfigurations)
-    - [Interfaces](#interfaces)
-      - [DataResults](#dataresults)
-      - [UserDefaultsOptions](#userdefaultsoptions)
-      - [TimelinesOptions](#timelinesoptions)
+* [`getItem(...)`](#getitem)
+* [`setItem(...)`](#setitem)
+* [`removeItem(...)`](#removeitem)
+* [`reloadAllTimelines()`](#reloadalltimelines)
+* [`reloadTimelines(...)`](#reloadtimelines)
+* [`getCurrentConfigurations()`](#getcurrentconfigurations)
+* [Interfaces](#interfaces)
 
 </docgen-index>
 
@@ -51,6 +44,8 @@ Return the value from user’s defaults database associated with the specified k
 
 **Returns:** <code>Promise&lt;<a href="#dataresults">DataResults</a>&lt;any&gt;&gt;</code>
 
+**Since:** 0.0.1
+
 --------------------
 
 
@@ -67,6 +62,8 @@ Set the value to user’s defaults database associated with the specified key
 | **`options`** | <code><a href="#userdefaultsoptions">UserDefaultsOptions</a></code> |
 
 **Returns:** <code>Promise&lt;<a href="#dataresults">DataResults</a>&lt;boolean&gt;&gt;</code>
+
+**Since:** 0.0.1
 
 --------------------
 
@@ -85,6 +82,8 @@ Remove the value from user’s defaults database associated with the specified k
 
 **Returns:** <code>Promise&lt;<a href="#dataresults">DataResults</a>&lt;boolean&gt;&gt;</code>
 
+**Since:** 0.0.1
+
 --------------------
 
 
@@ -97,6 +96,8 @@ reloadAllTimelines() => Promise<DataResults<boolean>>
 Reloads the timelines for all configured widgets belonging to the containing app
 
 **Returns:** <code>Promise&lt;<a href="#dataresults">DataResults</a>&lt;boolean&gt;&gt;</code>
+
+**Since:** 0.0.1
 
 --------------------
 
@@ -115,6 +116,8 @@ Reloads the timelines for all widgets of a particular kind
 
 **Returns:** <code>Promise&lt;<a href="#dataresults">DataResults</a>&lt;boolean&gt;&gt;</code>
 
+**Since:** 0.0.1
+
 --------------------
 
 
@@ -128,6 +131,8 @@ Get current widget configurations
 
 **Returns:** <code>Promise&lt;<a href="#dataresults">DataResults</a>&lt;any&gt;&gt;</code>
 
+**Since:** 0.0.1
+
 --------------------
 
 
@@ -136,24 +141,24 @@ Get current widget configurations
 
 #### DataResults
 
-| Prop          | Type           | Description                             |
-| ------------- | -------------- | --------------------------------------- |
-| **`results`** | <code>T</code> | Holds response results from native code |
+| Prop          | Type           | Description                             | Since |
+| ------------- | -------------- | --------------------------------------- | ----- |
+| **`results`** | <code>T</code> | Holds response results from native code | 0.0.1 |
 
 
 #### UserDefaultsOptions
 
-| Prop        | Type                | Description                                                           |
-| ----------- | ------------------- | --------------------------------------------------------------------- |
-| **`key`**   | <code>string</code> | The key whose value to retrieve from storage.                         |
-| **`group`** | <code>string</code> | User defaults database name which holds and organizes key/value pairs |
-| **`value`** | <code>string</code> | The value to set in storage with the associated key                   |
+| Prop        | Type                | Description                                                           | Since |
+| ----------- | ------------------- | --------------------------------------------------------------------- | ----- |
+| **`key`**   | <code>string</code> | The key whose value to retrieve from storage.                         | 0.0.1 |
+| **`group`** | <code>string</code> | User defaults database name which holds and organizes key/value pairs | 0.0.1 |
+| **`value`** | <code>string</code> | The value to set in storage with the associated key                   | 0.0.1 |
 
 
 #### TimelinesOptions
 
-| Prop         | Type                | Description                                                                                                    |
-| ------------ | ------------------- | -------------------------------------------------------------------------------------------------------------- |
-| **`ofKind`** | <code>string</code> | A string that identifies the widget and matches the value you used when you created the widget’s configuration |
+| Prop         | Type                | Description                                                                                                    | Since |
+| ------------ | ------------------- | -------------------------------------------------------------------------------------------------------------- | ----- |
+| **`ofKind`** | <code>string</code> | A string that identifies the widget and matches the value you used when you created the widget’s configuration | 0.0.1 |
 
 </docgen-api>
