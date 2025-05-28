@@ -1,6 +1,6 @@
 # capacitor-widgetsbridge-plugin
 
-Capacitor plugin to interact with ios widgetkit
+Capacitor plugin to interact with ios widgetkit (Fork of [capacitor-widgetsbridge-plugin]([capacitor-widgetsbridge-plugin](https://github.com/0xn33t/capacitor-widgetsbridge-plugin)))
 
 ## Demo
 
@@ -9,7 +9,7 @@ Capacitor plugin to interact with ios widgetkit
 ## Install
 
 ```bash
-npm install capacitor-widgetsbridge-plugin
+npm install capacitor-widgetsbridge-plugin-extented
 npx cap sync
 ```
 
@@ -17,13 +17,20 @@ npx cap sync
 
 <docgen-index>
 
-* [`getItem(...)`](#getitem)
-* [`setItem(...)`](#setitem)
-* [`removeItem(...)`](#removeitem)
-* [`reloadAllTimelines()`](#reloadalltimelines)
-* [`reloadTimelines(...)`](#reloadtimelines)
-* [`getCurrentConfigurations()`](#getcurrentconfigurations)
-* [Interfaces](#interfaces)
+- [capacitor-widgetsbridge-plugin](#capacitor-widgetsbridge-plugin)
+  - [Demo](#demo)
+  - [Install](#install)
+  - [API](#api)
+    - [getItem(...)](#getitem)
+    - [setItem(...)](#setitem)
+    - [removeItem(...)](#removeitem)
+    - [reloadAllTimelines()](#reloadalltimelines)
+    - [reloadTimelines(...)](#reloadtimelines)
+    - [getCurrentConfigurations()](#getcurrentconfigurations)
+    - [Interfaces](#interfaces)
+      - [DataResults](#dataresults)
+      - [UserDefaultsOptions](#userdefaultsoptions)
+      - [TimelinesOptions](#timelinesoptions)
 
 </docgen-index>
 
