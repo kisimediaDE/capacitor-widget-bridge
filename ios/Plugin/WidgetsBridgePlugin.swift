@@ -1,7 +1,6 @@
-import Foundation
 import Capacitor
+import Foundation
 import WidgetKit
-
 
 @objc(WidgetsBridgePlugin)
 public class WidgetsBridgePlugin: CAPPlugin {
@@ -22,13 +21,14 @@ public class WidgetsBridgePlugin: CAPPlugin {
             return
         }
 
-        if let userDefaults = UserDefaults.init(suiteName: group) {
+        if let userDefaults = UserDefaults(suiteName: group) {
+            print("✅ Zugriff auf AppGroup: \(group)")
             userDefaults.set(value, forKey: key)
             call.resolve(["results": true])
-            return
+        } else {
+            print("❌ KEIN Zugriff auf AppGroup: \(group)")
+            call.reject("Could not set item for group: \(group)")
         }
-
-        call.reject("Could not set item")
     }
 
     @objc func getItem(_ call: CAPPluginCall) {
@@ -103,15 +103,17 @@ public class WidgetsBridgePlugin: CAPPlugin {
                     return
                 }
 
-                call.resolve(["results": widgets.map { widget in
-                    [
-                        "family": widget.family.description,
-                        "kind": widget.kind,
-                        "configuration": [
-                            "description": widget.configuration?.description
+                call.resolve([
+                    "results": widgets.map { widget in
+                        [
+                            "family": widget.family.description,
+                            "kind": widget.kind,
+                            "configuration": [
+                                "description": widget.configuration?.description
+                            ],
                         ]
-                    ]
-                }])
+                    }
+                ])
             }
         } else {
             call.unavailable("Not available in iOS 13 or earlier.")
