@@ -39,7 +39,7 @@ export interface WidgetBridgePlugin {
    * Reloads timelines for all configured widgets in the app.
    *
    * - iOS: Triggers WidgetCenter reload.
-   * - Android: No-op (not applicable).
+   * - Android: Triggers AppWidgetManager update using registered widget class names.
    *
    * @since 7.0.0
    * @returns {Promise<DataResults<boolean>>} Promise indicating success or no-op.
@@ -50,7 +50,7 @@ export interface WidgetBridgePlugin {
    * Reloads timelines for all widgets of a specified kind.
    *
    * - iOS: Triggers reload of specific widget kind.
-   * - Android: No-op (not applicable).
+   * - Android: Triggers update for specific widget kinds if matched in registered widget class names.
    *
    * @param {TimelinesOptions} options
    * @since 7.0.0
