@@ -6,7 +6,10 @@ and update timeline widgets on both platforms.
 
 ## Demo
 
-![Alt Text](iosdemo.gif)
+<div style="display: flex; gap: 20px;">
+  <img src="iosdemo.gif" alt="iOS Example Demo" width="25%" />
+  <img src="androiddemo.gif" alt="Android Example Demo" width="25%" />
+</div>
 
 ## Install
 
@@ -14,6 +17,11 @@ and update timeline widgets on both platforms.
 npm install capacitor-widgetsbridge-plugin-extented
 npx cap sync
 ```
+
+## Credits
+
+Inspired by [0xn33t](https://github.com/0xn33t/capacitor-widgetsbridge-plugin), who created the original iOS WidgetKit bridge.  
+This plugin extends it with Android support and multi-platform improvements. Thank you for the groundwork!
 
 ## Platform Setup
 
@@ -47,6 +55,7 @@ npx cap sync
 - [capacitor-widgetsbridge-plugin-extented](#capacitor-widgetsbridge-plugin-extented)
   - [Demo](#demo)
   - [Install](#install)
+  - [Credits](#credits)
   - [Platform Setup](#platform-setup)
     - [iOS](#ios)
     - [Android](#android)
