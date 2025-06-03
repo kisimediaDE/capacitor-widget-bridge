@@ -4,7 +4,7 @@ export default {
     {
       file: 'dist/plugin.js',
       format: 'iife',
-      name: 'CapacitorWidgetsbridgePluginExtented',
+      name: 'capacitorWidgetsBridgePlugin',
       globals: {
         '@capacitor/core': 'capacitorExports',
       },

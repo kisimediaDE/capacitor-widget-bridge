@@ -1,6 +1,6 @@
 import { registerPlugin } from '@capacitor/core';
 
-import type { WidgetsBridgePlugin } from './definitions';
+import { WidgetsBridgePlugin } from './definitions';
 
 const WidgetsBridgePlugin = registerPlugin<WidgetsBridgePlugin>('WidgetsBridgePlugin');
 
