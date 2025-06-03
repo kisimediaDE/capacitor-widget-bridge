@@ -6,7 +6,7 @@ and update timeline widgets on both platforms.
 
 ## Demo
 
-<div style="display: flex; gap: 20px;">
+<div style="display: flex; gap: 20px; align-items: center; justify-content: center;">
   <img src="iosdemo.gif" alt="iOS Example Demo" width="25%" />
   <img src="androiddemo.gif" alt="Android Example Demo" width="25%" />
 </div>
@@ -52,14 +52,26 @@ This plugin extends it with Android support and multi-platform improvements. Tha
 
 <docgen-index>
 
-* [`getItem(...)`](#getitem)
-* [`setItem(...)`](#setitem)
-* [`removeItem(...)`](#removeitem)
-* [`reloadAllTimelines()`](#reloadalltimelines)
-* [`reloadTimelines(...)`](#reloadtimelines)
-* [`setRegisteredWidgets(...)`](#setregisteredwidgets)
-* [`getCurrentConfigurations()`](#getcurrentconfigurations)
-* [Interfaces](#interfaces)
+- [capacitor-widget-bridge](#capacitor-widget-bridge)
+  - [Demo](#demo)
+  - [Install](#install)
+  - [Credits](#credits)
+  - [Platform Setup](#platform-setup)
+    - [iOS](#ios)
+    - [Android](#android)
+  - [API](#api)
+    - [getItem(...)](#getitem)
+    - [setItem(...)](#setitem)
+    - [removeItem(...)](#removeitem)
+    - [reloadAllTimelines()](#reloadalltimelines)
+    - [reloadTimelines(...)](#reloadtimelines)
+    - [setRegisteredWidgets(...)](#setregisteredwidgets)
+    - [getCurrentConfigurations()](#getcurrentconfigurations)
+    - [Interfaces](#interfaces)
+      - [DataResults](#dataresults)
+      - [UserDefaultsOptions](#userdefaultsoptions)
+      - [TimelinesOptions](#timelinesoptions)
+      - [RegisteredWidgetsOptions](#registeredwidgetsoptions)
 
 </docgen-index>
 
@@ -85,8 +97,7 @@ Returns the value from the user’s defaults/shared preferences associated with 
 
 **Since:** 7.0.0
 
---------------------
-
+---
 
 ### setItem(...)
 
@@ -107,8 +118,7 @@ Sets the value to the user’s defaults/shared preferences associated with the s
 
 **Since:** 7.0.0
 
---------------------
-
+---
 
 ### removeItem(...)
 
@@ -129,8 +139,7 @@ Removes the value from the user’s defaults/shared preferences associated with 
 
 **Since:** 7.0.0
 
---------------------
-
+---
 
 ### reloadAllTimelines()
 
@@ -147,8 +156,7 @@ Reloads timelines for all configured widgets in the app.
 
 **Since:** 7.0.0
 
---------------------
-
+---
 
 ### reloadTimelines(...)
 
@@ -169,8 +177,7 @@ Reloads timelines for all widgets of a specified kind.
 
 **Since:** 7.0.0
 
---------------------
-
+---
 
 ### setRegisteredWidgets(...)
 
@@ -191,8 +198,7 @@ Registers widget provider class names for dynamic timeline updates on Android.
 
 **Since:** 7.0.0
 
---------------------
-
+---
 
 ### getCurrentConfigurations()
 
@@ -209,18 +215,15 @@ Retrieves current widget configurations.
 
 **Since:** 7.0.0
 
---------------------
-
+---
 
 ### Interfaces
-
 
 #### DataResults
 
 | Prop          | Type           | Description                             | Since |
 | ------------- | -------------- | --------------------------------------- | ----- |
 | **`results`** | <code>T</code> | Holds response results from native code | 7.0.0 |
-
 
 #### UserDefaultsOptions
 
@@ -230,13 +233,11 @@ Retrieves current widget configurations.
 | **`group`** | <code>string</code> | User defaults database name which holds and organizes key/value pairs | 7.0.0 |
 | **`value`** | <code>string</code> | The value to set in storage with the associated key                   | 7.0.0 |
 
-
 #### TimelinesOptions
 
 | Prop         | Type                | Description                                                                                                    | Since |
 | ------------ | ------------------- | -------------------------------------------------------------------------------------------------------------- | ----- |
 | **`ofKind`** | <code>string</code> | A string that identifies the widget and matches the value you used when you created the widget’s configuration | 7.0.0 |
-
 
 #### RegisteredWidgetsOptions
 
