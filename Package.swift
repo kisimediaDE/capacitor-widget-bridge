@@ -2,27 +2,27 @@
 import PackageDescription
 
 let package = Package(
-    name: "CapacitorWidgetsbridgePluginExtented",
+    name: "CapacitorWidgetBridge",
     platforms: [.iOS(.v14)],
     products: [
         .library(
-            name: "CapacitorWidgetsbridgePluginExtented",
-            targets: ["WidgetsBridgePlugin"])
+            name: "CapacitorWidgetBridge",
+            targets: ["WidgetBridgePlugin"])
     ],
     dependencies: [
         .package(url: "https://github.com/ionic-team/capacitor-swift-pm.git", from: "7.0.0")
     ],
     targets: [
         .target(
-            name: "WidgetsBridgePlugin",
+            name: "WidgetBridgePlugin",
             dependencies: [
                 .product(name: "Capacitor", package: "capacitor-swift-pm"),
                 .product(name: "Cordova", package: "capacitor-swift-pm"),
             ],
-            path: "ios/Sources/WidgetsBridgePlugin"),
+            path: "ios/Sources/WidgetBridgePlugin"),
         .testTarget(
-            name: "WidgetsBridgePluginTests",
-            dependencies: ["WidgetsBridgePlugin"],
-            path: "ios/Tests/WidgetsBridgePluginTests"),
+            name: "WidgetBridgePluginTests",
+            dependencies: ["WidgetBridgePlugin"],
+            path: "ios/Tests/WidgetBridgePluginTests"),
     ]
 )

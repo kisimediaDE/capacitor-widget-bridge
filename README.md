@@ -1,4 +1,4 @@
-# capacitor-widgetsbridge-plugin-extented
+# capacitor-widget-bridge
 
 A Capacitor plugin to interact with WidgetKit (iOS) and App Widgets (Android).
 Allows your Capacitor app to store data in shared user defaults (iOS) or shared preferences (Android),
@@ -14,7 +14,7 @@ and update timeline widgets on both platforms.
 ## Install
 
 ```bash
-npm install capacitor-widgetsbridge-plugin-extented
+npm install capacitor-widget-bridge
 npx cap sync
 ```
 
@@ -31,7 +31,7 @@ This plugin extends it with Android support and multi-platform improvements. Tha
 2. Add your App Group ID (e.g., `group.your.bundle.id`) to `UserDefaultsOptions.group`.
 3. Create a Widget Extension using SwiftUI and define your widgets.
 4. Use `UserDefaults(suiteName:)` with your group ID in the widget.
-5. Call `WidgetsBridgePlugin.reloadAllTimelines()` or `reloadTimelines(...)` after saving data.
+5. Call `WidgetBridgePlugin.reloadAllTimelines()` or `reloadTimelines(...)` after saving data.
 
 ### Android
 
@@ -40,38 +40,26 @@ This plugin extends it with Android support and multi-platform improvements. Tha
 3. In your app’s JS code, register the widget classes:
    ```ts
    if (Capacitor.getPlatform() === 'android') {
-     WidgetsBridgePlugin.setRegisteredWidgets({
+     WidgetBridgePlugin.setRegisteredWidgets({
        widgets: ['com.example.plugin.MyWidget'],
      });
    }
    ```
-4. Call `WidgetsBridgePlugin.setItem(...)` and then `reloadAllTimelines()` or `reloadTimelines(...)` to trigger updates.
+4. Call `WidgetBridgePlugin.setItem(...)` and then `reloadAllTimelines()` or `reloadTimelines(...)` to trigger updates.
 5. Use `SharedPreferences` in your widget code to read the data, using the same key/group as in JS.
 
 ## API
 
 <docgen-index>
 
-- [capacitor-widgetsbridge-plugin-extented](#capacitor-widgetsbridge-plugin-extented)
-  - [Demo](#demo)
-  - [Install](#install)
-  - [Credits](#credits)
-  - [Platform Setup](#platform-setup)
-    - [iOS](#ios)
-    - [Android](#android)
-  - [API](#api)
-    - [getItem(...)](#getitem)
-    - [setItem(...)](#setitem)
-    - [removeItem(...)](#removeitem)
-    - [reloadAllTimelines()](#reloadalltimelines)
-    - [reloadTimelines(...)](#reloadtimelines)
-    - [setRegisteredWidgets(...)](#setregisteredwidgets)
-    - [getCurrentConfigurations()](#getcurrentconfigurations)
-    - [Interfaces](#interfaces)
-      - [DataResults](#dataresults)
-      - [UserDefaultsOptions](#userdefaultsoptions)
-      - [TimelinesOptions](#timelinesoptions)
-      - [RegisteredWidgetsOptions](#registeredwidgetsoptions)
+* [`getItem(...)`](#getitem)
+* [`setItem(...)`](#setitem)
+* [`removeItem(...)`](#removeitem)
+* [`reloadAllTimelines()`](#reloadalltimelines)
+* [`reloadTimelines(...)`](#reloadtimelines)
+* [`setRegisteredWidgets(...)`](#setregisteredwidgets)
+* [`getCurrentConfigurations()`](#getcurrentconfigurations)
+* [Interfaces](#interfaces)
 
 </docgen-index>
 
@@ -95,9 +83,10 @@ Returns the value from the user’s defaults/shared preferences associated with 
 
 **Returns:** <code>Promise&lt;<a href="#dataresults">DataResults</a>&lt;any&gt;&gt;</code>
 
-**Since:** 0.0.1 (iOS), 0.3.0 (Android)
+**Since:** 7.0.0
 
----
+--------------------
+
 
 ### setItem(...)
 
@@ -116,9 +105,10 @@ Sets the value to the user’s defaults/shared preferences associated with the s
 
 **Returns:** <code>Promise&lt;<a href="#dataresults">DataResults</a>&lt;boolean&gt;&gt;</code>
 
-**Since:** 0.0.1 (iOS), 0.3.0 (Android)
+**Since:** 7.0.0
 
----
+--------------------
+
 
 ### removeItem(...)
 
@@ -137,9 +127,10 @@ Removes the value from the user’s defaults/shared preferences associated with 
 
 **Returns:** <code>Promise&lt;<a href="#dataresults">DataResults</a>&lt;boolean&gt;&gt;</code>
 
-**Since:** 0.0.1 (iOS), 0.3.0 (Android)
+**Since:** 7.0.0
 
----
+--------------------
+
 
 ### reloadAllTimelines()
 
@@ -154,9 +145,10 @@ Reloads timelines for all configured widgets in the app.
 
 **Returns:** <code>Promise&lt;<a href="#dataresults">DataResults</a>&lt;boolean&gt;&gt;</code>
 
-**Since:** 0.0.1 (iOS), 0.3.0 (Android – no effect)
+**Since:** 7.0.0
 
----
+--------------------
+
 
 ### reloadTimelines(...)
 
@@ -175,9 +167,10 @@ Reloads timelines for all widgets of a specified kind.
 
 **Returns:** <code>Promise&lt;<a href="#dataresults">DataResults</a>&lt;boolean&gt;&gt;</code>
 
-**Since:** 0.0.1 (iOS), 0.3.0 (Android – no effect)
+**Since:** 7.0.0
 
----
+--------------------
+
 
 ### setRegisteredWidgets(...)
 
@@ -196,9 +189,10 @@ Registers widget provider class names for dynamic timeline updates on Android.
 
 **Returns:** <code>Promise&lt;<a href="#dataresults">DataResults</a>&lt;boolean&gt;&gt;</code>
 
-**Since:** 0.3.0 (Android only)
+**Since:** 7.0.0
 
----
+--------------------
+
 
 ### getCurrentConfigurations()
 
@@ -213,36 +207,41 @@ Retrieves current widget configurations.
 
 **Returns:** <code>Promise&lt;<a href="#dataresults">DataResults</a>&lt;any&gt;&gt;</code>
 
-**Since:** 0.0.1 (iOS), 0.3.0 (Android – limited)
+**Since:** 7.0.0
 
----
+--------------------
+
 
 ### Interfaces
+
 
 #### DataResults
 
 | Prop          | Type           | Description                             | Since |
 | ------------- | -------------- | --------------------------------------- | ----- |
-| **`results`** | <code>T</code> | Holds response results from native code | 0.0.1 |
+| **`results`** | <code>T</code> | Holds response results from native code | 7.0.0 |
+
 
 #### UserDefaultsOptions
 
 | Prop        | Type                | Description                                                           | Since |
 | ----------- | ------------------- | --------------------------------------------------------------------- | ----- |
-| **`key`**   | <code>string</code> | The key whose value to retrieve from storage.                         | 0.0.1 |
-| **`group`** | <code>string</code> | User defaults database name which holds and organizes key/value pairs | 0.0.1 |
-| **`value`** | <code>string</code> | The value to set in storage with the associated key                   | 0.0.1 |
+| **`key`**   | <code>string</code> | The key whose value to retrieve from storage.                         | 7.0.0 |
+| **`group`** | <code>string</code> | User defaults database name which holds and organizes key/value pairs | 7.0.0 |
+| **`value`** | <code>string</code> | The value to set in storage with the associated key                   | 7.0.0 |
+
 
 #### TimelinesOptions
 
 | Prop         | Type                | Description                                                                                                    | Since |
 | ------------ | ------------------- | -------------------------------------------------------------------------------------------------------------- | ----- |
-| **`ofKind`** | <code>string</code> | A string that identifies the widget and matches the value you used when you created the widget’s configuration | 0.0.1 |
+| **`ofKind`** | <code>string</code> | A string that identifies the widget and matches the value you used when you created the widget’s configuration | 7.0.0 |
+
 
 #### RegisteredWidgetsOptions
 
 | Prop          | Type                  | Description                                                     | Since |
 | ------------- | --------------------- | --------------------------------------------------------------- | ----- |
-| **`widgets`** | <code>string[]</code> | Fully qualified class names of widgets to register for updates. | 0.3.0 |
+| **`widgets`** | <code>string[]</code> | Fully qualified class names of widgets to register for updates. | 7.0.0 |
 
 </docgen-api>

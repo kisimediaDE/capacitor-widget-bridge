@@ -1,6 +1,6 @@
-import WidgetKit
-import SwiftUI
 import AppIntents
+import SwiftUI
+import WidgetKit
 
 struct SimpleEntry: TimelineEntry {
     let date: Date
@@ -15,24 +15,28 @@ struct Provider: AppIntentTimelineProvider {
         SimpleEntry(date: Date(), text: "Loading...", configuration: .previewIntent)
     }
 
-    func snapshot(for configuration: ConfigurationAppIntent, in context: Context) async -> SimpleEntry {
+    func snapshot(for configuration: ConfigurationAppIntent, in context: Context) async
+        -> SimpleEntry
+    {
         let text = loadWidgetText()
         return SimpleEntry(date: Date(), text: text, configuration: configuration)
     }
 
-    func timeline(for configuration: ConfigurationAppIntent, in context: Context) async -> Timeline<SimpleEntry> {
+    func timeline(for configuration: ConfigurationAppIntent, in context: Context) async -> Timeline<
+        SimpleEntry
+    > {
         let text = loadWidgetText()
         let entry = SimpleEntry(date: Date(), text: text, configuration: configuration)
         return Timeline(entries: [entry], policy: .atEnd)
     }
 
     private func loadWidgetText() -> String {
-        let defaults = UserDefaults(suiteName: "group.de.kisimedia.WidgetsBridgePluginExample")
+        let defaults = UserDefaults(suiteName: "group.de.kisimedia.WidgetBridgePluginExample")
         return defaults?.string(forKey: "widgetText") ?? "No text"
     }
 }
 
-struct ExampleWidgetEntryView : View {
+struct ExampleWidgetEntryView: View {
     var entry: SimpleEntry
 
     var body: some View {
@@ -52,7 +56,9 @@ struct ExampleWidget: Widget {
     let kind: String = "ExampleWidget"
 
     var body: some WidgetConfiguration {
-        AppIntentConfiguration(kind: kind, intent: ConfigurationAppIntent.self, provider: Provider()) { entry in
+        AppIntentConfiguration(
+            kind: kind, intent: ConfigurationAppIntent.self, provider: Provider()
+        ) { entry in
             ExampleWidgetEntryView(entry: entry)
         }
         .configurationDisplayName("Text-Widget")

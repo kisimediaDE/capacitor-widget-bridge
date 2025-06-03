@@ -1,8 +1,8 @@
 import { registerPlugin } from '@capacitor/core';
 
-import { WidgetsBridgePlugin } from './definitions';
+import { WidgetBridgePlugin } from './definitions';
 
-const WidgetsBridgePlugin = registerPlugin<WidgetsBridgePlugin>('WidgetsBridgePlugin');
+const WidgetBridgePlugin = registerPlugin<WidgetBridgePlugin>('WidgetBridgePlugin');
 
 export * from './definitions';
-export { WidgetsBridgePlugin };
+export { WidgetBridgePlugin };

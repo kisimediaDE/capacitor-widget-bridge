@@ -1,4 +1,4 @@
-package de.kisimedia.plugins.widgetsbridgeplugin;
+package de.kisimedia.plugins.widgetbridgeplugin;
 
 import android.appwidget.AppWidgetManager;
 import android.content.ComponentName;
@@ -22,8 +22,8 @@ import org.json.JSONException;
 import java.util.List;
 import java.util.stream.Collectors;
 
-@CapacitorPlugin(name = "WidgetsBridgePlugin")
-public class WidgetsBridgePlugin extends Plugin {
+@CapacitorPlugin(name = "WidgetBridgePlugin")
+public class WidgetBridgePlugin extends Plugin {
 
     public static String[] registeredWidgetProviders = new String[]{};
 

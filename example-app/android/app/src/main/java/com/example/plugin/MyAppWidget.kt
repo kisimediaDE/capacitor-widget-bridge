@@ -15,7 +15,7 @@ class MyAppWidget : AppWidgetProvider() {
 
     companion object {
         fun updateAppWidget(context: Context, appWidgetManager: AppWidgetManager, appWidgetId: Int) {
-            val prefs = context.getSharedPreferences("group.de.kisimedia.WidgetsBridgePluginExample", Context.MODE_PRIVATE)
+            val prefs = context.getSharedPreferences("group.de.kisimedia.WidgetBridgePluginExample", Context.MODE_PRIVATE)
             val widgetText = prefs.getString("widgetText", "No text set") ?: "No text"
 
             val views = RemoteViews(context.packageName, R.layout.my_app_widget)

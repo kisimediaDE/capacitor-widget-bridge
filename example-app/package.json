@@ -1,7 +1,7 @@
 {
   "name": "widget-example",
   "version": "1.0.0",
-  "description": "Example app for the plugin capacitor-widgetsbridge-plugin-extented",
+  "description": "Example app for the plugin capacitor-widget-bridge",
   "type": "module",
   "keywords": [
     "capacitor",
@@ -16,7 +16,7 @@
     "@capacitor/android": "^7.2.0",
     "@capacitor/core": "latest",
     "@capacitor/ios": "^7.2.0",
-    "capacitor-widgetsbridge-plugin-extented": "file:.."
+    "capacitor-widget-bridge": "file:.."
   },
   "devDependencies": {
     "@capacitor/cli": "latest",

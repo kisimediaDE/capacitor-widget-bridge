@@ -9,9 +9,8 @@ struct ConfigurationAppIntent: WidgetConfigurationIntent {
     @Parameter(title: "Saved Text")
     var displayText: String?
 
-    
     static func defaultValue(for _: String?) -> String? {
-        let defaults = UserDefaults(suiteName: "group.de.kisimedia.WidgetsBridgePluginExample")
+        let defaults = UserDefaults(suiteName: "group.de.kisimedia.WidgetBridgePluginExample")
         return defaults?.string(forKey: "widgetText") ?? "No text saved"
     }
 

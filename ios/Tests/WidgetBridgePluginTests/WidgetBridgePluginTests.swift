@@ -1,13 +1,13 @@
 import XCTest
 
-@testable import WidgetsBridgePlugin
+@testable import WidgetBridgePlugin
 
-class WidgetsBridgePluginTests: XCTestCase {
+class WidgetBridgePluginTests: XCTestCase {
     func testEcho() {
         // This is an example of a functional test case for a plugin.
         // Use XCTAssert and related functions to verify your tests produce the correct results.
 
-        let implementation = WidgetsBridgePlugin()
+        let implementation = WidgetBridgePlugin()
         let value = "Hello, World!"
         let result = implementation.echo(value)
 

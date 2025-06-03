@@ -2,10 +2,10 @@ import Capacitor
 import Foundation
 import WidgetKit
 
-@objc(WidgetsBridgePlugin)
-public class WidgetsBridgePlugin: CAPPlugin, CAPBridgedPlugin {
-    public let identifier = "WidgetsBridgePlugin"
-    public let jsName = "WidgetsBridgePlugin"
+@objc(WidgetBridgePlugin)
+public class WidgetBridgePlugin: CAPPlugin, CAPBridgedPlugin {
+    public let identifier = "WidgetBridgePlugin"
+    public let jsName = "WidgetBridgePlugin"
     public let pluginMethods: [CAPPluginMethod] = [
         CAPPluginMethod(name: "getItem", returnType: CAPPluginReturnPromise),
         CAPPluginMethod(name: "setItem", returnType: CAPPluginReturnPromise),

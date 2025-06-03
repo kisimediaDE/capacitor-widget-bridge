@@ -1,7 +1,7 @@
 {
-  "name": "capacitor-widgetsbridge-plugin-extented",
-  "version": "0.3.0",
-  "description": "Capacitor plugin to interact with ios widgetkit and android",
+  "name": "capacitor-widget-bridge",
+  "version": "7.0.0",
+  "description": "Capacitor plugin to bridge data between your app and iOS/Android widgets using shared preferences and timeline updates",
   "main": "dist/plugin.cjs.js",
   "module": "dist/esm/index.js",
   "types": "dist/esm/index.d.ts",
@@ -13,16 +13,16 @@
     "ios/Sources",
     "ios/Tests",
     "Package.swift",
-    "CapacitorWidgetsbridgePluginExtented.podspec"
+    "CapacitorWidgetBridge.podspec"
   ],
   "author": "Kisimedia.de",
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/kisimediaDE/capacitor-widgetsbridge-plugin-extented.git"
+    "url": "git+https://github.com/kisimediaDE/capacitor-widget-bridge.git"
   },
   "bugs": {
-    "url": "https://github.com/kisimediaDE/capacitor-widgetsbridge-plugin-extented/issues"
+    "url": "https://github.com/kisimediaDE/capacitor-widget-bridge/issues"
   },
   "keywords": [
     "capacitor",
@@ -31,7 +31,7 @@
   ],
   "scripts": {
     "verify": "npm run verify:ios && npm run verify:android && npm run verify:web",
-    "verify:ios": "xcodebuild -scheme CapacitorWidgetsbridgePluginExtented -destination generic/platform=iOS",
+    "verify:ios": "xcodebuild -scheme CapacitorWidgetBridge -destination generic/platform=iOS",
     "verify:android": "cd android && ./gradlew clean build test && cd ..",
     "verify:web": "npm run build",
     "lint": "npm run eslint && npm run prettier -- --check && npm run swiftlint -- lint",
@@ -39,7 +39,7 @@
     "eslint": "eslint . --ext ts",
     "prettier": "prettier \"**/*.{css,html,ts,js,java}\" --plugin=prettier-plugin-java",
     "swiftlint": "node-swiftlint",
-    "docgen": "docgen --api WidgetsBridgePlugin --output-readme README.md --output-json dist/docs.json",
+    "docgen": "docgen --api WidgetBridgePlugin --output-readme README.md --output-json dist/docs.json",
     "build": "npm run clean && npm run docgen && tsc && rollup -c rollup.config.mjs",
     "clean": "rimraf ./dist",
     "watch": "tsc --watch",
