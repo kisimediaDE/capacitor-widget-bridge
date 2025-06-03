@@ -141,7 +141,7 @@ reloadAllTimelines() => Promise<DataResults<boolean>>
 Reloads timelines for all configured widgets in the app.
 
 - iOS: Triggers WidgetCenter reload.
-- Android: No-op (not applicable).
+- Android: Triggers AppWidgetManager update using registered widget class names.
 
 **Returns:** <code>Promise&lt;<a href="#dataresults">DataResults</a>&lt;boolean&gt;&gt;</code>
 
@@ -159,7 +159,7 @@ reloadTimelines(options: TimelinesOptions) => Promise<DataResults<boolean>>
 Reloads timelines for all widgets of a specified kind.
 
 - iOS: Triggers reload of specific widget kind.
-- Android: No-op (not applicable).
+- Android: Triggers update for specific widget kinds if matched in registered widget class names.
 
 | Param         | Type                                                          |
 | ------------- | ------------------------------------------------------------- |
