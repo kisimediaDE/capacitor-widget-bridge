@@ -1,29 +1,35 @@
-# capacitor-widget-bridge
+# 📦 capacitor-widget-bridge
+
+[![npm](https://img.shields.io/npm/v/capacitor-widget-bridge)](https://www.npmjs.com/package/capacitor-widget-bridge)
+[![bundle size](https://img.shields.io/bundlephobia/minzip/capacitor-widget-bridge)](https://bundlephobia.com/result?p=capacitor-widget-bridge)
+[![License: MIT](https://img.shields.io/npm/l/capacitor-widget-bridge)](./LICENSE)
+[![Platforms](https://img.shields.io/badge/platforms-iOS%20%7C%20Android-orange)](#-platform-behavior)
+[![Capacitor](https://img.shields.io/badge/capacitor-7.x-blue)](https://capacitorjs.com/)
 
 A Capacitor plugin to interact with WidgetKit (iOS) and App Widgets (Android).
 Allows your Capacitor app to store data in shared user defaults (iOS) or shared preferences (Android),
 and update timeline widgets on both platforms.
 
-## Demo
+## 🎬 Demo
 
 <div style="display: flex; gap: 20px; align-items: center; justify-content: center;">
   <img src="iosdemo.gif" alt="iOS Example Demo" width="25%" />
   <img src="androiddemo.gif" alt="Android Example Demo" width="25%" />
 </div>
 
-## Install
+## 🚀 Install
 
 ```bash
 npm install capacitor-widget-bridge
 npx cap sync
 ```
 
-## Credits
+## 🙏 Credits
 
 Inspired by [0xn33t](https://github.com/0xn33t/capacitor-widgetsbridge-plugin), who created the original iOS WidgetKit bridge.  
 This plugin extends it with Android support and multi-platform improvements. Thank you for the groundwork!
 
-## Platform Setup
+## 📱 Platform Setup
 
 ### iOS
 
@@ -48,7 +54,7 @@ This plugin extends it with Android support and multi-platform improvements. Tha
 4. Call `WidgetBridgePlugin.setItem(...)` and then `reloadAllTimelines()` or `reloadTimelines(...)` to trigger updates.
 5. Use `SharedPreferences` in your widget code to read the data, using the same key/group as in JS.
 
-## API
+## 📘 API
 
 <docgen-index>
 
