@@ -1,5 +1,6 @@
 package de.kisimedia.plugins.widgetbridgeplugin;
 
+import android.app.PendingIntent;
 import android.appwidget.AppWidgetManager;
 import android.content.ComponentName;
 import android.content.Context;
@@ -152,4 +153,40 @@ public class WidgetBridgePlugin extends Plugin {
         // Nicht direkt umsetzbar wie in iOS
         call.resolve(new JSObject().put("results", "not supported"));
     }
+
+    @RequiresApi(api = Build.VERSION_CODES.O)
+    @PluginMethod
+    public void requestWidget(PluginCall call) {
+        Context context = getContext();
+
+        if (registeredWidgetProviders.length == 0) {
+            call.reject("No registered widget provider");
+            return;
+        }
+
+        try {
+            Class<?> widgetClass = Class.forName(registeredWidgetProviders[0]); // lấy class đầu tiên
+            ComponentName myWidgetProvider = new ComponentName(context, widgetClass);
+
+            AppWidgetManager appWidgetManager = AppWidgetManager.getInstance(context);
+
+            if (appWidgetManager.isRequestPinAppWidgetSupported()) {
+                Intent pinnedWidgetCallbackIntent = new Intent(context, widgetClass); // Optional callback
+                PendingIntent successCallback = PendingIntent.getBroadcast(
+                        context,
+                        0,
+                        pinnedWidgetCallbackIntent,
+                        PendingIntent.FLAG_UPDATE_CURRENT | PendingIntent.FLAG_MUTABLE
+                );
+
+                appWidgetManager.requestPinAppWidget(myWidgetProvider, null, successCallback);
+                call.resolve(new JSObject().put("results", true));
+            } else {
+                call.reject("Pinning not supported");
+            }
+        } catch (Exception e) {
+            call.reject("Error: " + e.getMessage());
+        }
+    }
+
 }

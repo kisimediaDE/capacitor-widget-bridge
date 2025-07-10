@@ -80,6 +80,18 @@ export interface WidgetBridgePlugin {
    * @returns {Promise<DataResults<any>>} Promise resolving to configuration data.
    */
   getCurrentConfigurations(): Promise<DataResults<any>>;
+
+  /**
+   * Requests the user to pin the widget to their home screen.
+   *
+   * - iOS: Not supported (no equivalent functionality).
+   * - Android: Uses AppWidgetManager's `requestPinAppWidget` to prompt the user to add a widget.
+   * 
+   *
+   * @since 7.0.0
+   * @returns {Promise<void>} Promise that resolves when the request has been made.
+   */
+  requestWidget(): Promise<DataResults<boolean>>;
 }
 
 export interface UserDefaultsOptions {
