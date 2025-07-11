@@ -89,7 +89,7 @@ export interface WidgetBridgePlugin {
    * 
    *
    * @since 7.0.0
-   * @returns {Promise<void>} Promise that resolves when the request has been made.
+   * @returns {Promise<DataResults<boolean>>} Promise that resolves when the request has been made.
    */
   requestWidget(): Promise<DataResults<boolean>>;
 }

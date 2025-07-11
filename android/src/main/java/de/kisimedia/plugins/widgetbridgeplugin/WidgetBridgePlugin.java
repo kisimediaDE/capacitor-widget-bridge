@@ -154,10 +154,14 @@ public class WidgetBridgePlugin extends Plugin {
         call.resolve(new JSObject().put("results", "not supported"));
     }
 
-    @RequiresApi(api = Build.VERSION_CODES.O)
     @PluginMethod
     public void requestWidget(PluginCall call) {
         Context context = getContext();
+
+        if (Build.VERSION.SDK_INT < Build.VERSION_CODES.O) {
+            call.reject("This feature requires Android O (API level 26) or higher.");
+            return;
+        }
 
         if (registeredWidgetProviders.length == 0) {
             call.reject("No registered widget provider");
