@@ -215,6 +215,22 @@ Retrieves current widget configurations.
 
 **Since:** 7.0.0
 
+
+### requestWidget()
+
+```typescript
+requestWidget() => Promise<DataResults<boolean>>
+```
+Requests the user to pin the widget to their home screen.
+
+- iOS: Not supported (no equivalent functionality).
+- Android: Uses AppWidgetManager's `requestPinAppWidget` to prompt the user to add a widget.
+
+**Returns:** <code>Promise&lt;<a href="#dataresults">DataResults</a>&lt;boolean&gt;&gt;</code>
+
+**Since:** 7.0.0
+
+
 --------------------
 
 
