@@ -215,6 +215,8 @@ Retrieves current widget configurations.
 
 **Since:** 7.0.0
 
+--------------------
+
 
 ### requestWidget()
 
