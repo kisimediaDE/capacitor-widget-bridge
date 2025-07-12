@@ -189,8 +189,18 @@ public class WidgetBridgePlugin extends Plugin {
             } else {
                 call.reject("Pinning not supported");
             }
+        } catch (ClassNotFoundException e) {
+            call.reject("Error: Widget provider class not found: " + e.getMessage());
+            e.printStackTrace();
+        } catch (IllegalArgumentException e) {
+            call.reject("Error: Invalid argument: " + e.getMessage());
+            e.printStackTrace();
+        } catch (NullPointerException e) {
+            call.reject("Error: Null pointer encountered: " + e.getMessage());
+            e.printStackTrace();
         } catch (Exception e) {
-            call.reject("Error: " + e.getMessage());
+            call.reject("Unexpected error: " + e.getMessage());
+            e.printStackTrace();
         }
     }
 
