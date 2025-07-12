@@ -169,7 +169,7 @@ public class WidgetBridgePlugin extends Plugin {
         }
 
         try {
-            Class<?> widgetClass = Class.forName(registeredWidgetProviders[0]); // lấy class đầu tiên
+            Class<?> widgetClass = Class.forName(registeredWidgetProviders[0]); // get first class
             ComponentName myWidgetProvider = new ComponentName(context, widgetClass);
 
             AppWidgetManager appWidgetManager = AppWidgetManager.getInstance(context);
