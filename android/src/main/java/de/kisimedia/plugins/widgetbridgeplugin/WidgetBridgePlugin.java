@@ -1,5 +1,6 @@
 package de.kisimedia.plugins.widgetbridgeplugin;
 
+import android.app.PendingIntent;
 import android.appwidget.AppWidgetManager;
 import android.content.ComponentName;
 import android.content.Context;
@@ -152,4 +153,55 @@ public class WidgetBridgePlugin extends Plugin {
         // Nicht direkt umsetzbar wie in iOS
         call.resolve(new JSObject().put("results", "not supported"));
     }
+
+    @PluginMethod
+    public void requestWidget(PluginCall call) {
+        Context context = getContext();
+
+        if (Build.VERSION.SDK_INT < Build.VERSION_CODES.O) {
+            call.reject("This feature requires Android O (API level 26) or higher.");
+            return;
+        }
+
+        if (registeredWidgetProviders.length == 0) {
+            call.reject("No registered widget provider");
+            return;
+        }
+
+        try {
+            Class<?> widgetClass = Class.forName(registeredWidgetProviders[0]); // lấy class đầu tiên
+            ComponentName myWidgetProvider = new ComponentName(context, widgetClass);
+
+            AppWidgetManager appWidgetManager = AppWidgetManager.getInstance(context);
+
+            if (appWidgetManager.isRequestPinAppWidgetSupported()) {
+                Intent pinnedWidgetCallbackIntent = new Intent(context, widgetClass); // Optional callback
+                PendingIntent successCallback = PendingIntent.getBroadcast(
+                        context,
+                        0,
+                        pinnedWidgetCallbackIntent,
+                        PendingIntent.FLAG_UPDATE_CURRENT | 
+                        (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S ? PendingIntent.FLAG_MUTABLE : PendingIntent.FLAG_IMMUTABLE)
+                );
+
+                appWidgetManager.requestPinAppWidget(myWidgetProvider, null, successCallback);
+                call.resolve(new JSObject().put("results", true));
+            } else {
+                call.reject("Pinning not supported");
+            }
+        } catch (ClassNotFoundException e) {
+            call.reject("Error: Widget provider class not found: " + e.getMessage());
+            e.printStackTrace();
+        } catch (IllegalArgumentException e) {
+            call.reject("Error: Invalid argument: " + e.getMessage());
+            e.printStackTrace();
+        } catch (NullPointerException e) {
+            call.reject("Error: Null pointer encountered: " + e.getMessage());
+            e.printStackTrace();
+        } catch (Exception e) {
+            call.reject("Unexpected error: " + e.getMessage());
+            e.printStackTrace();
+        }
+    }
+
 }
