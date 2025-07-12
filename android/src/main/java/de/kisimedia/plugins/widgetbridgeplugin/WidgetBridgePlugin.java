@@ -180,7 +180,8 @@ public class WidgetBridgePlugin extends Plugin {
                         context,
                         0,
                         pinnedWidgetCallbackIntent,
-                        PendingIntent.FLAG_UPDATE_CURRENT | PendingIntent.FLAG_MUTABLE
+                        PendingIntent.FLAG_UPDATE_CURRENT | 
+                        (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S ? PendingIntent.FLAG_MUTABLE : PendingIntent.FLAG_IMMUTABLE)
                 );
 
                 appWidgetManager.requestPinAppWidget(myWidgetProvider, null, successCallback);
