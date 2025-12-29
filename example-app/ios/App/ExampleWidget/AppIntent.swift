@@ -1,5 +1,6 @@
 import AppIntents
 
+@available(iOS 16.0, *)
 struct ConfigurationAppIntent: WidgetConfigurationIntent {
     static var title: LocalizedStringResource { "Widget Text Config" }
     static var description: IntentDescription {
@@ -22,5 +23,9 @@ struct ConfigurationAppIntent: WidgetConfigurationIntent {
         let intent = ConfigurationAppIntent()
         intent.displayText = "Preview text"
         return intent
+    }
+
+    func perform() async throws -> some IntentResult {
+        .result()
     }
 }
