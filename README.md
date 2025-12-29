@@ -4,7 +4,7 @@
 [![bundle size](https://img.shields.io/bundlephobia/minzip/capacitor-widget-bridge)](https://bundlephobia.com/result?p=capacitor-widget-bridge)
 [![License: MIT](https://img.shields.io/npm/l/capacitor-widget-bridge)](./LICENSE)
 [![Platforms](https://img.shields.io/badge/platforms-iOS%20%7C%20Android-orange)](#-platform-behavior)
-[![Capacitor](https://img.shields.io/badge/capacitor-7.x-blue)](https://capacitorjs.com/)
+[![Capacitor](https://img.shields.io/badge/capacitor-8.x-blue)](https://capacitorjs.com/)
 
 A Capacitor plugin to interact with WidgetKit (iOS) and App Widgets (Android).
 Allows your Capacitor app to store data in shared user defaults (iOS) or shared preferences (Android),
@@ -65,6 +65,7 @@ This plugin extends it with Android support and multi-platform improvements. Tha
 * [`reloadTimelines(...)`](#reloadtimelines)
 * [`setRegisteredWidgets(...)`](#setregisteredwidgets)
 * [`getCurrentConfigurations()`](#getcurrentconfigurations)
+* [`requestWidget()`](#requestwidget)
 * [Interfaces](#interfaces)
 
 </docgen-index>
@@ -223,6 +224,7 @@ Retrieves current widget configurations.
 ```typescript
 requestWidget() => Promise<DataResults<boolean>>
 ```
+
 Requests the user to pin the widget to their home screen.
 
 - iOS: Not supported (no equivalent functionality).
@@ -231,7 +233,6 @@ Requests the user to pin the widget to their home screen.
 **Returns:** <code>Promise&lt;<a href="#dataresults">DataResults</a>&lt;boolean&gt;&gt;</code>
 
 **Since:** 7.0.0
-
 
 --------------------
 
