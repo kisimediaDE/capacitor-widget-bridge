@@ -4,29 +4,24 @@ import android.app.PendingIntent;
 import android.appwidget.AppWidgetManager;
 import android.content.ComponentName;
 import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
-
+import android.os.Build;
+import androidx.annotation.RequiresApi;
 import com.getcapacitor.JSArray;
 import com.getcapacitor.JSObject;
 import com.getcapacitor.Plugin;
 import com.getcapacitor.PluginCall;
 import com.getcapacitor.PluginMethod;
-import android.content.Intent;
-import android.os.Build;
-
-import androidx.annotation.RequiresApi;
-
 import com.getcapacitor.annotation.CapacitorPlugin;
-
-import org.json.JSONException;
-
 import java.util.List;
 import java.util.stream.Collectors;
+import org.json.JSONException;
 
 @CapacitorPlugin(name = "WidgetBridgePlugin")
 public class WidgetBridgePlugin extends Plugin {
 
-    public static String[] registeredWidgetProviders = new String[]{};
+    public static String[] registeredWidgetProviders = new String[] {};
 
     private SharedPreferences getPrefs(String group) {
         return getContext().getSharedPreferences(group, Context.MODE_PRIVATE);
@@ -139,9 +134,11 @@ public class WidgetBridgePlugin extends Plugin {
             return;
         }
 
-        List<String> list = widgets.toList().stream()
-            .filter(obj -> obj instanceof String)
-            .map(obj -> (String) obj)
+        List<String> list = widgets
+            .toList()
+            .stream()
+            .filter((obj) -> obj instanceof String)
+            .map((obj) -> (String) obj)
             .collect(Collectors.toList());
 
         registeredWidgetProviders = list.toArray(new String[0]);
@@ -177,10 +174,10 @@ public class WidgetBridgePlugin extends Plugin {
             if (appWidgetManager.isRequestPinAppWidgetSupported()) {
                 Intent pinnedWidgetCallbackIntent = new Intent(context, widgetClass); // Optional callback
                 PendingIntent successCallback = PendingIntent.getBroadcast(
-                        context,
-                        0,
-                        pinnedWidgetCallbackIntent,
-                        PendingIntent.FLAG_UPDATE_CURRENT | 
+                    context,
+                    0,
+                    pinnedWidgetCallbackIntent,
+                    PendingIntent.FLAG_UPDATE_CURRENT |
                         (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S ? PendingIntent.FLAG_MUTABLE : PendingIntent.FLAG_IMMUTABLE)
                 );
 
@@ -203,5 +200,4 @@ public class WidgetBridgePlugin extends Plugin {
             e.printStackTrace();
         }
     }
-
 }

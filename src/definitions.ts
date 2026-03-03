@@ -86,7 +86,7 @@ export interface WidgetBridgePlugin {
    *
    * - iOS: Not supported (no equivalent functionality).
    * - Android: Uses AppWidgetManager's `requestPinAppWidget` to prompt the user to add a widget.
-   * 
+   *
    *
    * @since 7.0.0
    * @returns {Promise<DataResults<boolean>>} Promise that resolves when the request has been made.
