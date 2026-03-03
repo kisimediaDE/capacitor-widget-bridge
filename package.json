@@ -1,6 +1,6 @@
 {
   "name": "capacitor-widget-bridge",
-  "version": "8.0.0",
+  "version": "8.1.0",
   "description": "Capacitor plugin to bridge data between your app and iOS/Android widgets using shared preferences and timeline updates",
   "main": "dist/plugin.cjs.js",
   "module": "dist/esm/index.js",
