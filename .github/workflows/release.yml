@@ -1,0 +1,161 @@
+name: Release
+
+on:
+  push:
+    tags:
+      - "v*.*.*"
+
+permissions:
+  contents: read
+
+concurrency:
+  group: release-${{ github.ref }}
+  cancel-in-progress: false
+
+jobs:
+  validate-web-android:
+    name: Validate (Web + Android)
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: npm
+
+      - name: Setup Java
+        uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: 21
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Lint TypeScript
+        run: npm run eslint
+
+      - name: Check formatting
+        run: npm run prettier -- --check
+
+      - name: Build plugin
+        run: npm run build
+
+      - name: Verify Android build/tests
+        working-directory: android
+        run: ./gradlew clean build test --no-daemon
+
+  validate-ios:
+    name: Validate (iOS)
+    runs-on: macos-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: npm
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Verify iOS build
+        run: npm run verify:ios
+
+  validate-example-app:
+    name: Validate Example App (Web + Android)
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: npm
+          cache-dependency-path: |
+            package-lock.json
+            example-app/package-lock.json
+
+      - name: Setup Java
+        uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: 21
+
+      - name: Install plugin dependencies
+        run: npm ci
+
+      - name: Build plugin
+        run: npm run build
+
+      - name: Pack plugin tarball
+        run: echo "PLUGIN_TGZ=$(npm pack --silent)" >> "$GITHUB_ENV"
+
+      - name: Install example app dependencies
+        working-directory: example-app
+        run: npm ci
+
+      - name: Install packaged plugin in example app
+        working-directory: example-app
+        run: npm install --no-save "../${PLUGIN_TGZ}"
+
+      - name: Build example app web
+        working-directory: example-app
+        run: npm run build
+
+      - name: Sync Capacitor Android project
+        working-directory: example-app
+        run: npx cap sync android
+
+      - name: Build and unit test example app Android
+        working-directory: example-app/android
+        run: ./gradlew :app:assembleDebug :app:testDebugUnitTest --no-daemon
+
+  publish:
+    name: Publish npm package
+    runs-on: ubuntu-latest
+    if: startsWith(github.ref, 'refs/tags/v')
+    needs:
+      - validate-web-android
+      - validate-ios
+      - validate-example-app
+    permissions:
+      contents: read
+      id-token: write
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          registry-url: https://registry.npmjs.org
+          cache: npm
+
+      - name: Verify git tag matches package version
+        run: |
+          TAG_VERSION="${GITHUB_REF_NAME#v}"
+          PACKAGE_VERSION="$(node -p "require('./package.json').version")"
+          if [ "${TAG_VERSION}" != "${PACKAGE_VERSION}" ]; then
+            echo "Tag version (${TAG_VERSION}) does not match package.json (${PACKAGE_VERSION})."
+            exit 1
+          fi
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Build package
+        run: npm run build
+
+      - name: Publish to npm
+        run: npm publish --provenance --access public
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
